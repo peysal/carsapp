@@ -1,0 +1,26 @@
+{
+    "fluentMethods": true,
+    "relationships": [],
+    "fields": [
+        {
+            "fieldName": "make",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "model",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "price",
+            "fieldType": "Integer"
+        }
+    ],
+    "changelogDate": "20180320155413",
+    "dto": "no",
+    "service": "serviceImpl",
+    "entityTableName": "car",
+    "jpaMetamodelFiltering": false,
+    "pagination": "no",
+    "microserviceName": "carsapp",
+    "searchEngine": false
+}

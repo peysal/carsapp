@@ -20,17 +20,6 @@ public class MailAttachmentTest {
 
     @Before
     public void setUp() throws Exception {
-        this.uut = new MailAttachment();
-        expected = "";
-    }
-
-    @After
-    public void tearDown() throws Exception {
-    }
-
-    @Test
-    public void create() throws IOException {
-        String resultString = null;
         StringBuilder sb = new StringBuilder();
         sb.append("Road Tax Renewal (either Yes or No)");
         sb.append("\t");
@@ -64,13 +53,23 @@ public class MailAttachmentTest {
         sb.append("\t");
         sb.append("Agen Ali");
         sb.append("\n");
+        this.uut = new MailAttachment("1st file", "CSV", sb.toString());
+        expected = sb.toString();
+    }
 
+    @After
+    public void tearDown() throws Exception {
+    }
 
-        ByteArrayResource result = this.uut.create(sb.toString());
+    @Test
+    public void create() throws IOException {
+        String resultString = null;
+
+        ByteArrayResource result = this.uut.create();
         try (Scanner scanner = new Scanner(result.getInputStream(), StandardCharsets.UTF_8.name())) {
             resultString = scanner.useDelimiter(multilineRegex).next();
         }
 
-        assertEquals(sb.toString(), resultString);
+        assertEquals(expected, resultString);
     }
 }

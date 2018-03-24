@@ -8,10 +8,21 @@ public interface AttachmentCreatorService {
 
     /**
      * Create an attachment
-     *
-     * @param data in readable format
      * @return byteArrayResource
      */
-    ByteArrayResource create(final String data) throws IOException;
+    ByteArrayResource create() throws IOException;
 
+    /**
+     * File name
+     *
+     * @return file name
+     */
+    String getFileName();
+
+    /**
+     * Attachment content type
+     *
+     * @return CSV, pdf, txt
+     */
+    String getContentType();
 }

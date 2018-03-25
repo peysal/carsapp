@@ -1,6 +1,5 @@
 package com.cars.app.service.impl;
 
-import com.cars.app.service.AttachmentCreatorService;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -15,7 +14,7 @@ import static org.junit.Assert.assertEquals;
 public class MailAttachmentTest {
 
     private final String multilineRegex = "\\A";
-    private AttachmentCreatorService uut;
+    private MailAttachment uut;
     private String expected;
 
     @Before
@@ -53,7 +52,8 @@ public class MailAttachmentTest {
         sb.append("\t");
         sb.append("Agen Ali");
         sb.append("\n");
-        this.uut = new MailAttachment("1st file", "CSV", sb.toString());
+        this.uut = new MailAttachment();
+        this.uut.setup("1st file", "CSV", sb.toString());
         expected = sb.toString();
     }
 

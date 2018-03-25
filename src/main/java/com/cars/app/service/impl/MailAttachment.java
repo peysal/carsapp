@@ -20,7 +20,7 @@ public class MailAttachment implements AttachmentCreatorService {
     private String contentType;
     private String formattedData;
 
-    MailAttachment(final String fileName, final String contentType, final String formattedData) {
+    public void setup(final String fileName, final String contentType, final String formattedData) {
         this.fileName = fileName;
         this.contentType = contentType;
         this.formattedData = formattedData;

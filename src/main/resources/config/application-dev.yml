@@ -54,7 +54,7 @@ spring:
             hibernate.cache.hazelcast.use_lite_member: true
     mail:
         host: localhost
-        port: 25
+        port: 1025
         username:
         password:
     messages:

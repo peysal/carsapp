@@ -2,6 +2,7 @@ package com.cars.app.service.impl;
 
 import com.cars.app.service.AttachmentCreatorService;
 import com.cars.app.service.MailClientService;
+import org.apache.commons.lang3.CharEncoding;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +23,8 @@ public class MailNotifier implements MailClientService {
     public void send(final String recipient, final String message,
                      final List<AttachmentCreatorService> attachments) {
         MimeMessagePreparator messagePreparator = mimeMessage -> {
-            MimeMessageHelper messageHelper = new MimeMessageHelper(mimeMessage);
+            MimeMessageHelper messageHelper = new MimeMessageHelper(mimeMessage,
+                MimeMessageHelper.MULTIPART_MODE_MIXED_RELATED, CharEncoding.UTF_8);
             messageHelper.setFrom("babunPelangi@bhr.com");
             messageHelper.setTo(recipient);
             messageHelper.setSubject("Dont work over the weekend");

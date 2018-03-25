@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title th:text="#{email.referred.title}">Yoo Title</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+</head>
+<body>
+<p th:text="#{email.referred.salutation}">
+    Dear,
+</p>
+<p th:text="#{email.referred.intro}">
+    My introduction
+</p>
+<p th:text="#{email.referred.name(${referred.name}})}">
+    &nbsp;&nbsp;Name:
+</p>
+<p th:text="#{email.referred.id(${referred.id}})}">
+    &nbsp;&nbsp;Id No:
+<p th:text="#{email.referred.gender(${referred.gender}})}">
+    &nbsp;&nbsp;Gender:
+</p>
+<p th:text="#{email.referred.email(${referred.email}})}">
+    &nbsp;&nbsp;Email:
+</p>
+<p th:text="#{email.referred.mobile(${referred.mobileNo}})}">
+    &nbsp;&nbsp;Mobile No:
+</p>
+<p th:text="#{email.referred.vehicle(${referred.registrationNo}})}">
+    &nbsp;&nbsp;Vehicle Registration No
+</p>
+<p th:text="#{email.referred.agent(${referred.agentTagged}}))}">
+    &nbsp;&nbsp;Agent Tagged:
+</p>
+<p th:text="#{email.referred.closing}">
+    Please refer to the excel sheet for detail information. Thank you
+</p>
+<p>
+    <span th:text="#{email.referred.regards}">Regards, </span>
+    <br/>
+    <b th:text="#{email.referred.signature}">RHB Insurance Mobile App Team.</b>
+</p>
+</body>
+</html>

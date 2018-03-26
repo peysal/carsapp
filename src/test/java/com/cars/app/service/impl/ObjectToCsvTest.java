@@ -6,11 +6,11 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 public class ObjectToCsvTest {
 
@@ -73,8 +73,8 @@ public class ObjectToCsvTest {
     private class ReferredCaseVM implements ViewModel {
 
         @Override
-        public Map<String, String> mapAll() {
-            Map<String, String> requestMap = new LinkedHashMap<>();
+        public Map<String, Object> mapAll() {
+            Map<String, Object> requestMap = new LinkedHashMap<>();
             requestMap.put("Road Tax Renewal (either Yes or No)", "Yes");
             requestMap.put("Occupation", "developer");
             requestMap.put("Vehicle Body Type", "Sedan");

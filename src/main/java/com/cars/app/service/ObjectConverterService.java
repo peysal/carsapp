@@ -1,7 +1,7 @@
 package com.cars.app.service;
 
 /**
- * @author 409082
+ *
  */
 public interface ObjectConverterService {
 

@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.Iterator;
 import java.util.Map;
-import java.util.Set;
 
 @Service
 public class ObjectToCsv implements ObjectConverterService {
@@ -17,11 +16,11 @@ public class ObjectToCsv implements ObjectConverterService {
 
     @Override
     public String convert(final ViewModel vm) {
-        Map<String, String> mappedViewModel = vm.mapAll();
+        Map<String, Object> mappedViewModel = vm.mapAll();
         StringBuilder csvHeader = new StringBuilder();
         StringBuilder csvLine = new StringBuilder();
-        for(Iterator<Map.Entry<String, String>> iterator = mappedViewModel.entrySet().iterator(); iterator.hasNext();){
-            Map.Entry<String, String> entry = iterator.next();
+        for (Iterator<Map.Entry<String, Object>> iterator = mappedViewModel.entrySet().iterator(); iterator.hasNext(); ) {
+            Map.Entry<String, Object> entry = iterator.next();
             csvHeader.append(entry.getKey());
             csvLine.append(entry.getValue());
             if(iterator.hasNext()){

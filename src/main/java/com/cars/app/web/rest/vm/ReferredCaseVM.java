@@ -1,8 +1,12 @@
 package com.cars.app.web.rest.vm;
 
-import java.util.List;
+import com.cars.app.service.ViewModel;
 
-public class ReferredCaseVM {
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
+
+public class ReferredCaseVM implements ViewModel {
 
     /**
      * shared fields start
@@ -22,7 +26,7 @@ public class ReferredCaseVM {
     private String mobileNumber;
     private String address;
     private String vehicleRegistrationNo;
-    private Integer resedentialPostcode;
+    private Integer residentialPostcode;
     private String vehicleType;
     private String coverType;
     private String vehicleBrand;
@@ -58,7 +62,14 @@ public class ReferredCaseVM {
         // Empty public constructor used by Jackson.
     }
 
-    public ReferredCaseVM(String agentTagged, String vehicleBodyType, Double basicPremium, Double grossPremium, Double totalPayableAmount, String description, String name, String idNo, String gender, String dateOfBirth, String maritalStatus, String email, String mobileNumber, String address, String vehicleRegistrationNo, Integer resedentialPostcode, String vehicleType, String coverType, String vehicleBrand, String vehicleModel, Integer yearOfManufacture, Integer vehicleCapacity, String variantSeries, String nvic, String engineNo, String chasisNo, Integer noOfSeats, Double insuredAmount, String policyEffectiveDate, List<String> drivers, Integer ncd, List<String> addOnCoverages, String roadTaxRenewal, String occupation) {
+    public ReferredCaseVM(String agentTagged, String vehicleBodyType, Double basicPremium, Double grossPremium,
+                          Double totalPayableAmount, String description, String name, String idNo, String gender,
+                          String dateOfBirth, String maritalStatus, String email, String mobileNumber, String address,
+                          String vehicleRegistrationNo, Integer residentialPostcode, String vehicleType,
+                          String coverType, String vehicleBrand, String vehicleModel, Integer yearOfManufacture,
+                          Integer vehicleCapacity, String variantSeries, String nvic, String engineNo, String chasisNo,
+                          Integer noOfSeats, Double insuredAmount, String policyEffectiveDate, List<String> drivers,
+                          Integer ncd, List<String> addOnCoverages, String roadTaxRenewal, String occupation) {
         this.agentTagged = agentTagged;
         this.vehicleBodyType = vehicleBodyType;
         this.basicPremium = basicPremium;
@@ -74,7 +85,7 @@ public class ReferredCaseVM {
         this.mobileNumber = mobileNumber;
         this.address = address;
         this.vehicleRegistrationNo = vehicleRegistrationNo;
-        this.resedentialPostcode = resedentialPostcode;
+        this.residentialPostcode = residentialPostcode;
         this.vehicleType = vehicleType;
         this.coverType = coverType;
         this.vehicleBrand = vehicleBrand;
@@ -215,12 +226,12 @@ public class ReferredCaseVM {
         this.vehicleRegistrationNo = vehicleRegistrationNo;
     }
 
-    public Integer getResedentialPostcode() {
-        return resedentialPostcode;
+    public Integer getResidentialPostcode() {
+        return residentialPostcode;
     }
 
-    public void setResedentialPostcode(Integer resedentialPostcode) {
-        this.resedentialPostcode = resedentialPostcode;
+    public void setResidentialPostcode(Integer residentialPostcode) {
+        this.residentialPostcode = residentialPostcode;
     }
 
     public String getVehicleType() {
@@ -385,7 +396,7 @@ public class ReferredCaseVM {
             ", mobileNumber='" + mobileNumber + '\'' +
             ", address='" + address + '\'' +
             ", vehicleRegistrationNo='" + vehicleRegistrationNo + '\'' +
-            ", resedentialPostcode=" + resedentialPostcode +
+            ", residentialPostcode=" + residentialPostcode +
             ", vehicleType='" + vehicleType + '\'' +
             ", coverType='" + coverType + '\'' +
             ", vehicleBrand='" + vehicleBrand + '\'' +
@@ -405,5 +416,45 @@ public class ReferredCaseVM {
             ", roadTaxRenewal='" + roadTaxRenewal + '\'' +
             ", occupation='" + occupation + '\'' +
             '}';
+    }
+
+    @Override
+    public Map<String, Object> mapAll() {
+        Map<String, Object> mappedObject = new LinkedHashMap<>();
+        mappedObject.put("name", this.name);
+        mappedObject.put("idNo", this.idNo);
+        mappedObject.put("gender", this.gender);
+        mappedObject.put("dateOfBirth", this.dateOfBirth);
+        mappedObject.put("maritalStatus", this.maritalStatus);
+        mappedObject.put("email", this.email);
+        mappedObject.put("mobileNumber", this.mobileNumber);
+        mappedObject.put("address", this.address);
+        mappedObject.put("residentialPostcode", this.residentialPostcode);
+        mappedObject.put("vehicleRegistrationNo", this.vehicleRegistrationNo);
+        mappedObject.put("vehicleType", this.vehicleType);
+        mappedObject.put("coverType", this.coverType);
+        mappedObject.put("vehicleBrand", this.vehicleBrand);
+        mappedObject.put("vehicleModel", this.vehicleModel);
+        mappedObject.put("yearOfManufacture", this.yearOfManufacture);
+        mappedObject.put("vehicleCapacity", this.vehicleCapacity);
+        mappedObject.put("variantSeries", this.variantSeries);
+        mappedObject.put("nvic", this.nvic);
+        mappedObject.put("engineNo", this.engineNo);
+        mappedObject.put("chasisNo", this.chasisNo);
+        mappedObject.put("noOfSeats", this.noOfSeats);
+        mappedObject.put("insuredAmount", this.insuredAmount);
+        mappedObject.put("policyEffectiveDate", this.policyEffectiveDate);
+        mappedObject.put("drivers", this.drivers);
+        mappedObject.put("ncd", this.ncd);
+        mappedObject.put("addOnCoverages", this.addOnCoverages);
+        mappedObject.put("roadTaxRenewal", this.roadTaxRenewal);
+        mappedObject.put("occupation", this.occupation);
+        mappedObject.put("vehicleBodyType", this.vehicleBodyType);
+        mappedObject.put("basicPremium", this.basicPremium);
+        mappedObject.put("grossPremium", this.grossPremium);
+        mappedObject.put("totalPayableAmount", this.totalPayableAmount);
+        mappedObject.put("description", this.description);
+        mappedObject.put("agentTagged", this.agentTagged);
+        return mappedObject;
     }
 }

@@ -21,6 +21,7 @@ public class ReferredCaseResource {
 
     private final Logger log = LoggerFactory.getLogger(ReferredCaseResource.class);
 
+
     /**
      * POST notifyByEMail
      */

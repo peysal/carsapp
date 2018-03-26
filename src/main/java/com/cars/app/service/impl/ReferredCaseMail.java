@@ -38,9 +38,9 @@ public class ReferredCaseMail implements NotifierService {
     }
 
     @Async
-    public void setupTemplate(final String recipient, final Map<String, Object> messageContent,
-                              final String templateName, final String titleKey,
-                              final List<AttachmentCreatorService> attachments) {
+    private void setupTemplate(final String recipient, final Map<String, Object> messageContent,
+                               final String templateName, final String titleKey,
+                               final List<AttachmentCreatorService> attachments) {
         Locale locale = Locale.US;
         Context context = new Context(locale);
         context.setVariable(CONTENT, messageContent);
@@ -52,8 +52,8 @@ public class ReferredCaseMail implements NotifierService {
     }
 
     @Async
-    public void sendEmail(String to, String subject, String content, boolean isMultipart, boolean isHtml,
-                          List<AttachmentCreatorService> attachments) {
+    private void sendEmail(String to, String subject, String content, boolean isMultipart, boolean isHtml,
+                           List<AttachmentCreatorService> attachments) {
         log.debug("Send email[multipart '{}' and html '{}'] to '{}' with subject '{}' and content={}",
             isMultipart, isHtml, to, subject, content);
 

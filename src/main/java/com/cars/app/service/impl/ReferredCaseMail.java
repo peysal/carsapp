@@ -43,7 +43,7 @@ public class ReferredCaseMail implements NotifierService {
     @Override
     public void notify(final String recipient, final Map<String, Object> messageContent,
                        final List<AttachmentCreatorService> attachments) throws IOException, MessagingException {
-        setupTemplate(recipient, messageContent, "referredCaseEmail", "email.referredCase.title",
+        setupTemplate(recipient, messageContent, "referredCaseEmail", "email.referred.title",
             attachments);
         log.debug("recipient:" + recipient, " messageContent:" + messageContent + " total attachments:" + attachments.size());
     }
@@ -52,12 +52,12 @@ public class ReferredCaseMail implements NotifierService {
     private void setupTemplate(final String recipient, final Map<String, Object> messageContent,
                                final String templateName, final String titleKey,
                                final List<AttachmentCreatorService> attachments) throws IOException, MessagingException {
-        Locale locale = Locale.US;
+        Locale locale = Locale.ENGLISH;
         Context context = new Context(locale);
         context.setVariable(CONTENT, messageContent);
         context.setVariable(BASE_URL, jHipsterProperties.getMail().getBaseUrl());
         String content = templateEngine.process(templateName, context);
-        String subject = messageSource.getMessage(titleKey, null, locale);
+        String subject = messageSource.getMessage(titleKey, new Object[]{messageContent.get("vehicleRegistrationNo")}, locale);
         sendEmail(recipient, subject, content, true, true, attachments);
     }
 
@@ -75,7 +75,7 @@ public class ReferredCaseMail implements NotifierService {
         message.setFrom(jHipsterProperties.getMail().getFrom());
         message.setSubject(subject);
         for (AttachmentCreatorService attachment : attachments) {
-            message.addAttachment(attachment.getFileName() + ".csv", attachment.create());
+            message.addAttachment(attachment.getAttachmentName(), attachment.create());
         }
         message.setText(content, isHtml);
         javaMailSender.send(mimeMessage);

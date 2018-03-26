@@ -37,12 +37,7 @@ public class MailAttachment implements AttachmentCreatorService {
     }
 
     @Override
-    public String getFileName() {
-        return this.fileName;
-    }
-
-    @Override
-    public String getContentType() {
-        return this.formattedData;
+    public String getAttachmentName() {
+        return this.fileName + "." + this.contentType;
     }
 }

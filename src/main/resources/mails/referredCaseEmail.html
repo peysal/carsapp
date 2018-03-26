@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title th:text="#{email.referred.title}">Yoo Title</title>
+    <title th:text="#{email.referred.title(${referred.vehicleRegistrationNo})}">Yoo Title</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 </head>
 <body>
@@ -12,25 +12,25 @@
     My introduction
 </p>
 <p th:text="#{email.referred.name(${referred.name})}">
-    &nbsp;&nbsp;Name:
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Name:
 </p>
 <p th:text="#{email.referred.id(${referred.idNo})}">
-    &nbsp;&nbsp;Id No:
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Id No:
 </p>
 <p th:text="#{email.referred.gender(${referred.gender})}">
-    &nbsp;&nbsp;Gender:
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Gender:
 </p>
 <p th:text="#{email.referred.email(${referred.email})}">
-    &nbsp;&nbsp;Email:
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Email:
 </p>
 <p th:text="#{email.referred.mobile(${referred.mobileNumber})}">
-    &nbsp;&nbsp;Mobile No:
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Mobile No:
 </p>
 <p th:text="#{email.referred.vehicle(${referred.vehicleRegistrationNo})}">
-    &nbsp;&nbsp;Vehicle Registration No
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Vehicle Registration No
 </p>
 <p th:text="#{email.referred.agent(${referred.agentTagged})}">
-    &nbsp;&nbsp;Agent Tagged:
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Agent Tagged:
 </p>
 <p th:text="#{email.referred.closing}">
     Closing bro

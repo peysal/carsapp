@@ -22,16 +22,8 @@ public interface AttachmentCreatorService {
     ByteArrayResource create() throws IOException;
 
     /**
-     * File name
-     *
-     * @return file name
+     * Get attachment name
+     * @return attachment full name
      */
-    String getFileName();
-
-    /**
-     * Attachment content type
-     *
-     * @return CSV, pdf, txt
-     */
-    String getContentType();
+    String getAttachmentName();
 }

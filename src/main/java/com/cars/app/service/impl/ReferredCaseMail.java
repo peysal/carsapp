@@ -30,11 +30,20 @@ public class ReferredCaseMail implements NotifierService {
     private MessageSource messageSource;
     private JavaMailSender javaMailSender;
 
+    public ReferredCaseMail(JHipsterProperties jHipsterProperties, SpringTemplateEngine templateEngine,
+                            MessageSource messageSource, JavaMailSender javaMailSender) {
+        this.jHipsterProperties = jHipsterProperties;
+        this.templateEngine = templateEngine;
+        this.messageSource = messageSource;
+        this.javaMailSender = javaMailSender;
+    }
+
     @Override
     public void notify(final String recipient, final Map<String, Object> messageContent,
                        final List<AttachmentCreatorService> attachments) {
         setupTemplate(recipient, messageContent, "referredCaseEmail", "email.referredCase.title",
             attachments);
+        log.debug("recipient:" + recipient, " messageContent:" + messageContent + " total attachments:" + attachments.size());
     }
 
     @Async

@@ -42,8 +42,10 @@ public class ReferredCaseResource {
     public ResponseEntity notifyByEMail(@RequestBody ReferredCaseVM referredCaseVM) {
         AttachmentCreatorService noVarient = new MailAttachment();
         noVarient.setup("No Varient", "CSV", this.objectToCsv.convert(referredCaseVM));
+        log.debug("done setup for attachment:" + noVarient.getFileName());
         AttachmentCreatorService referCase = new MailAttachment();
         referCase.setup("Refer Case", "CSV", this.objectToCsv.convert(referredCaseVM));
+        log.debug("done setup for attachment:" + referCase.getFileName());
         List<AttachmentCreatorService> attachments = new ArrayList<>();
         attachments.add(noVarient);
         attachments.add(referCase);

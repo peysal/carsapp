@@ -11,31 +11,32 @@
 <p th:text="#{email.referred.intro}">
     My introduction
 </p>
-<p th:text="#{email.referred.name(${referred.name}})}">
+<p th:text="#{email.referred.name(${referred.name})}">
     &nbsp;&nbsp;Name:
 </p>
-<p th:text="#{email.referred.id(${referred.id}})}">
+<p th:text="#{email.referred.id(${referred.idNo})}">
     &nbsp;&nbsp;Id No:
-<p th:text="#{email.referred.gender(${referred.gender}})}">
+</p>
+<p th:text="#{email.referred.gender(${referred.gender})}">
     &nbsp;&nbsp;Gender:
 </p>
-<p th:text="#{email.referred.email(${referred.email}})}">
+<p th:text="#{email.referred.email(${referred.email})}">
     &nbsp;&nbsp;Email:
 </p>
-<p th:text="#{email.referred.mobile(${referred.mobileNo}})}">
+<p th:text="#{email.referred.mobile(${referred.mobileNumber})}">
     &nbsp;&nbsp;Mobile No:
 </p>
-<p th:text="#{email.referred.vehicle(${referred.registrationNo}})}">
+<p th:text="#{email.referred.vehicle(${referred.vehicleRegistrationNo})}">
     &nbsp;&nbsp;Vehicle Registration No
 </p>
-<p th:text="#{email.referred.agent(${referred.agentTagged}}))}">
+<p th:text="#{email.referred.agent(${referred.agentTagged})}">
     &nbsp;&nbsp;Agent Tagged:
 </p>
 <p th:text="#{email.referred.closing}">
-    Please refer to the excel sheet for detail information. Thank you
+    Closing bro
 </p>
 <p>
-    <span th:text="#{email.referred.regards}">Regards, </span>
+    <span th:text="#{email.referred.regards}">tq, </span>
     <br/>
     <b th:text="#{email.referred.signature}">Mobile App Team.</b>
 </p>

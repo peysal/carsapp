@@ -14,7 +14,9 @@ import org.springframework.stereotype.Service;
 import org.thymeleaf.context.Context;
 import org.thymeleaf.spring4.SpringTemplateEngine;
 
+import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
+import java.io.IOException;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -40,7 +42,7 @@ public class ReferredCaseMail implements NotifierService {
 
     @Override
     public void notify(final String recipient, final Map<String, Object> messageContent,
-                       final List<AttachmentCreatorService> attachments) {
+                       final List<AttachmentCreatorService> attachments) throws IOException, MessagingException {
         setupTemplate(recipient, messageContent, "referredCaseEmail", "email.referredCase.title",
             attachments);
         log.debug("recipient:" + recipient, " messageContent:" + messageContent + " total attachments:" + attachments.size());
@@ -49,42 +51,34 @@ public class ReferredCaseMail implements NotifierService {
     @Async
     private void setupTemplate(final String recipient, final Map<String, Object> messageContent,
                                final String templateName, final String titleKey,
-                               final List<AttachmentCreatorService> attachments) {
+                               final List<AttachmentCreatorService> attachments) throws IOException, MessagingException {
         Locale locale = Locale.US;
         Context context = new Context(locale);
         context.setVariable(CONTENT, messageContent);
         context.setVariable(BASE_URL, jHipsterProperties.getMail().getBaseUrl());
         String content = templateEngine.process(templateName, context);
         String subject = messageSource.getMessage(titleKey, null, locale);
-        sendEmail(recipient, subject, content, false, true, attachments);
-
+        sendEmail(recipient, subject, content, true, true, attachments);
     }
 
     @Async
     private void sendEmail(String to, String subject, String content, boolean isMultipart, boolean isHtml,
-                           List<AttachmentCreatorService> attachments) {
+                           List<AttachmentCreatorService> attachments) throws MessagingException, IOException {
         log.debug("Send email[multipart '{}' and html '{}'] to '{}' with subject '{}' and content={}",
             isMultipart, isHtml, to, subject, content);
 
         // Prepare message using a Spring helper
         MimeMessage mimeMessage = javaMailSender.createMimeMessage();
-        try {
-            MimeMessageHelper message = new MimeMessageHelper(mimeMessage, isMultipart, CharEncoding.UTF_8);
-            message.setTo(to);
-            message.setFrom(jHipsterProperties.getMail().getFrom());
-            message.setSubject(subject);
-            for (AttachmentCreatorService attachment : attachments) {
-                message.addAttachment(attachment.getFileName(), attachment.create(), attachment.getContentType());
-            }
-            message.setText(content, isHtml);
-            javaMailSender.send(mimeMessage);
-            log.debug("Sent email to User '{}'", to);
-        } catch (Exception e) {
-            if (log.isDebugEnabled()) {
-                log.warn("Email could not be sent to user '{}'", to, e);
-            } else {
-                log.warn("Email could not be sent to user '{}': {}", to, e.getMessage());
-            }
+
+        MimeMessageHelper message = new MimeMessageHelper(mimeMessage, isMultipart, CharEncoding.UTF_8);
+        message.setTo(to);
+        message.setFrom(jHipsterProperties.getMail().getFrom());
+        message.setSubject(subject);
+        for (AttachmentCreatorService attachment : attachments) {
+            message.addAttachment(attachment.getFileName() + ".csv", attachment.create());
         }
+        message.setText(content, isHtml);
+        javaMailSender.send(mimeMessage);
+        log.debug("Sent email to User '{}'", to);
     }
 }

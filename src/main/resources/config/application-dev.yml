@@ -54,9 +54,9 @@ spring:
             hibernate.cache.hazelcast.use_lite_member: true
     mail:
         host: localhost
-        port: 1025
-        username:
-        password:
+        port: 2525
+        username: superSaiya@gmail.com
+        password: ayam
     messages:
         cache-seconds: 1
     thymeleaf:

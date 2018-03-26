@@ -7,6 +7,15 @@ import java.io.IOException;
 public interface AttachmentCreatorService {
 
     /**
+     * Setup all the service attribute
+     *
+     * @param fileName
+     * @param contentType
+     * @param formattedData
+     */
+    void setup(final String fileName, final String contentType, final String formattedData);
+
+    /**
      * Create an attachment
      * @return byteArrayResource
      */

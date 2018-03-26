@@ -20,6 +20,7 @@ public class MailAttachment implements AttachmentCreatorService {
     private String contentType;
     private String formattedData;
 
+    @Override
     public void setup(final String fileName, final String contentType, final String formattedData) {
         this.fileName = fileName;
         this.contentType = contentType;

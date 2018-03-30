@@ -1,5 +1,6 @@
 package com.cars.app.web.rest;
 
+import com.cars.app.config.ApplicationProperties;
 import com.cars.app.service.AttachmentCreatorService;
 import com.cars.app.service.impl.MailAttachment;
 import com.cars.app.service.impl.ObjectToCsv;
@@ -29,10 +30,13 @@ public class ReferredCaseResource {
     private final Logger log = LoggerFactory.getLogger(ReferredCaseResource.class);
     private ObjectToCsv objectToCsv;
     private ReferredCaseMail referredCaseMail;
+    private ApplicationProperties applicationProperties;
 
-    public ReferredCaseResource(ObjectToCsv objectToCsv, ReferredCaseMail referredCaseMail) {
+    public ReferredCaseResource(ObjectToCsv objectToCsv, ReferredCaseMail referredCaseMail,
+                                ApplicationProperties applicationProperties) {
         this.objectToCsv = objectToCsv;
         this.referredCaseMail = referredCaseMail;
+        this.applicationProperties = applicationProperties;
     }
 
     /**
@@ -50,7 +54,8 @@ public class ReferredCaseResource {
         attachments.add(noVarient);
         attachments.add(referCase);
         try {
-            this.referredCaseMail.notify(referredCaseVM.getEmail(), referredCaseVM.mapAll(), attachments);
+            this.referredCaseMail.notify(this.applicationProperties.getReferredEmail().getFixedRecipient(),
+                referredCaseVM.mapAll(), attachments);
             return new ResponseEntity<>("email was sent", HttpStatus.OK);
         } catch (Exception ex) {
             log.warn("email not sent", ex);
